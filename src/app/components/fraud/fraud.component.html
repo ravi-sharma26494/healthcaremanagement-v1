@@ -1,0 +1,86 @@
+<div class="layout-wrapper">
+  <!-- App Bar -->
+  <div class="layout-topbar">
+    <div class="topbar-left">
+      <i class="pi pi-heart-fill healthcare-icon"></i>
+      <span class="app-name">Healthcare Management</span>
+    </div>
+    <div class="topbar-right">
+      <div class="user-profile">
+        <i class="pi pi-user"></i>
+        <span>{{ userEmail }}</span>
+      </div>
+      <button pButton icon="pi pi-power-off" class="p-button-rounded p-button-danger" (click)="logout()"></button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="layout-main">
+    <!-- Back button as a separate prominent element -->
+    <div class="back-button-container">
+      <button pButton icon="pi pi-arrow-left" label="Back to Dashboard" 
+        class="p-button-raised p-button-primary" (click)="goBack()"></button>
+    </div>
+
+    <div class="page-header">
+      <div class="page-title">
+        <div>
+          <h1>Fraud Detection</h1>
+          <p>Monitor and investigate potential fraud cases</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="data-section">
+      <p-table 
+        [value]="frauds" 
+        [paginator]="true" 
+        [rows]="5" 
+        [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [loading]="loading"
+        styleClass="p-datatable-gridlines p-datatable-striped"
+        [rowHover]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} fraud cases"
+        [rowsPerPageOptions]="[5, 10, 20]">
+        
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Case ID</th>
+            <th>Claim ID</th>
+            <th>Type</th>
+            <th>Detection Date</th>
+            <th>Status</th>
+            <th>Amount</th>
+            <th>Confidence</th>
+          </tr>
+        </ng-template>
+        
+        <ng-template pTemplate="body" let-fraud>
+          <tr>
+            <td>{{ fraud.id }}</td>
+            <td>{{ fraud.ClaimID }}</td>
+            <td>{{ fraud.FraudType }}</td>
+            <td>{{ fraud.DetectionDate | date:'mediumDate' }}</td>
+            <td>
+              <p-tag [value]="fraud.Status" [severity]="getSeverity(fraud.Status)"></p-tag>
+            </td>
+            <td>${{ fraud.Amount.toLocaleString() }}</td>
+            <td>
+              <div class="confidence-indicator">
+                <div class="confidence-bar" [style.width.%]="fraud.Confidence * 100" [style.background-color]="getConfidenceColor(fraud.Confidence)"></div>
+                <span>{{ (fraud.Confidence * 100).toFixed(0) }}%</span>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+        
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="7" class="text-center">No fraud cases found.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

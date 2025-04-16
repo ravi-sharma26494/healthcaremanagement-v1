@@ -1,0 +1,91 @@
+<div class="layout-wrapper">
+  <!-- App Bar -->
+  <div class="layout-topbar">
+    <div class="topbar-left">
+      <i class="pi pi-heart-fill healthcare-icon"></i>
+      <span class="app-name">Healthcare Management</span>
+    </div>
+    <div class="topbar-right">
+      <div class="user-profile">
+        <i class="pi pi-user"></i>
+        <span>{{ userEmail }}</span>
+      </div>
+      <button pButton icon="pi pi-power-off" class="p-button-rounded p-button-danger" (click)="logout()"></button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="layout-main">
+    <!-- Back button as a separate prominent element -->
+    <div class="back-button-container">
+      <button pButton icon="pi pi-arrow-left" label="Back to Dashboard" 
+        class="p-button-raised p-button-primary" (click)="goBack()"></button>
+    </div>
+
+    <div class="page-header">
+      <div class="page-title">
+        <div>
+          <h1>Patient Records</h1>
+          <p>View and manage patient information</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="data-section">
+      <p-table 
+        [value]="patients" 
+        [paginator]="true" 
+        [rows]="5" 
+        [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [loading]="loading"
+        styleClass="p-datatable-gridlines p-datatable-striped"
+        [rowHover]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} patients"
+        [rowsPerPageOptions]="[5, 10, 20]">
+        
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Patient ID</th>
+            <th>Date of Birth</th>
+            <th>Gender</th>
+            <th>Race</th>
+            <th>Conditions</th>
+            <th>Annual Reimbursement</th>
+          </tr>
+        </ng-template>
+        
+        <ng-template pTemplate="body" let-patient>
+          <tr>
+            <td>{{ patient.BeneID }}</td>
+            <td>{{ patient.DOB | date:'mediumDate' }}</td>
+            <td>{{ getGenderLabel(patient.Gender) }}</td>
+            <td>{{ getRaceLabel(patient.Race) }}</td>
+            <td>
+              <div class="conditions-list">
+                <p-tag *ngIf="patient.ChronicCond_Alzheimer === 1" severity="danger" value="Alzheimer's"></p-tag>
+                <p-tag *ngIf="patient.ChronicCond_Heartfailure === 1" severity="danger" value="Heart Failure"></p-tag>
+                <p-tag *ngIf="patient.ChronicCond_KidneyDisease === 1" severity="danger" value="Kidney Disease"></p-tag>
+                <p-tag *ngIf="patient.ChronicCond_Cancer === 1" severity="danger" value="Cancer"></p-tag>
+                <p-tag *ngIf="patient.ChronicCond_ObstrPulmonary === 1" severity="danger" value="COPD"></p-tag>
+                <p-tag *ngIf="patient.ChronicCond_Depression === 1" severity="danger" value="Depression"></p-tag>
+                <p-tag *ngIf="patient.ChronicCond_Diabetes === 1" severity="danger" value="Diabetes"></p-tag>
+                <p-tag *ngIf="patient.ChronicCond_IschemicHeart === 1" severity="danger" value="Ischemic Heart"></p-tag>
+                <p-tag *ngIf="patient.ChronicCond_Osteoporasis === 1" severity="danger" value="Osteoporosis"></p-tag>
+                <p-tag *ngIf="patient.ChronicCond_rheumatoidarthritis === 1" severity="danger" value="Arthritis"></p-tag>
+                <p-tag *ngIf="patient.ChronicCond_stroke === 1" severity="danger" value="Stroke"></p-tag>
+              </div>
+            </td>
+            <td>${{ (patient.IPAnnualReimbursementAmt + patient.OPAnnualReimbursementAmt).toLocaleString() }}</td>
+          </tr>
+        </ng-template>
+        
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="6" class="text-center">No patients found.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,114 @@
+<div class="layout-wrapper">
+  <!-- App Bar -->
+  <div class="layout-topbar">
+    <div class="topbar-left">
+      <i class="pi pi-heart-fill healthcare-icon"></i>
+      <span class="app-name">Healthcare Management</span>
+    </div>
+    <div class="topbar-right">
+      <div class="user-profile">
+        <i class="pi pi-user"></i>
+        <span>{{ userEmail }}</span>
+      </div>
+      <button pButton icon="pi pi-power-off" class="p-button-rounded p-button-danger" (click)="logout()"></button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="layout-main">
+    <div class="dashboard-header">
+      <h1>Dashboard</h1>
+      <p>Welcome to your Healthcare Management Dashboard</p>
+    </div>
+
+    <div class="grid">
+      <!-- Claims Card -->
+      <div class="col-12 md:col-6 lg:col-3">
+        <div class="dashboard-card">
+          <div class="card-header">
+            <div class="card-icon claims">
+              <i class="pi pi-file-edit"></i>
+            </div>
+            <div class="card-title">
+              <h3>Claims</h3>
+              <span>Manage all claims</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <h2>{{ stats.claims }}</h2>
+            <span>Total Claims</span>
+          </div>
+          <div class="card-footer">
+            <button pButton label="View Details" class="p-button-outlined" (click)="navigateTo('claims')"></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Patients Card -->
+      <div class="col-12 md:col-6 lg:col-3">
+        <div class="dashboard-card">
+          <div class="card-header">
+            <div class="card-icon patients">
+              <i class="pi pi-users"></i>
+            </div>
+            <div class="card-title">
+              <h3>Patients</h3>
+              <span>Patient records</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <h2>{{ stats.patients }}</h2>
+            <span>Registered Patients</span>
+          </div>
+          <div class="card-footer">
+            <button pButton label="View Details" class="p-button-outlined" (click)="navigateTo('patients')"></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fraud Card -->
+      <div class="col-12 md:col-6 lg:col-3">
+        <div class="dashboard-card">
+          <div class="card-header">
+            <div class="card-icon fraud">
+              <i class="pi pi-exclamation-triangle"></i>
+            </div>
+            <div class="card-title">
+              <h3>Fraud Cases</h3>
+              <span>Detection & Investigation</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <h2>{{ stats.fraud }}</h2>
+            <span>Detected Cases</span>
+          </div>
+          <div class="card-footer">
+            <button pButton label="View Details" class="p-button-outlined" (click)="navigateTo('fraud')"></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Users Card -->
+      <div class="col-12 md:col-6 lg:col-3">
+        <div class="dashboard-card">
+          <div class="card-header">
+            <div class="card-icon users">
+              <i class="pi pi-user"></i>
+            </div>
+            <div class="card-title">
+              <h3>Users</h3>
+              <span>System Users</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <h2>{{ stats.users }}</h2>
+            <span>Active Users</span>
+          </div>
+          <div class="card-footer">
+            <button pButton label="View Details" class="p-button-outlined" (click)="navigateTo('users')"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

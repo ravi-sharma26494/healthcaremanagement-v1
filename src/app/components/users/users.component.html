@@ -1,0 +1,94 @@
+<div class="layout-wrapper">
+  <!-- App Bar -->
+  <div class="layout-topbar">
+    <div class="topbar-left">
+      <i class="pi pi-heart-fill healthcare-icon"></i>
+      <span class="app-name">Healthcare Management</span>
+    </div>
+    <div class="topbar-right">
+      <div class="user-profile">
+        <i class="pi pi-user"></i>
+        <span>{{ userEmail }}</span>
+      </div>
+      <button pButton icon="pi pi-power-off" class="p-button-rounded p-button-danger" (click)="logout()"></button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="layout-main">
+    <!-- Back button as a separate prominent element -->
+    <div class="back-button-container">
+      <button pButton icon="pi pi-arrow-left" label="Back to Dashboard" 
+        class="p-button-raised p-button-primary" (click)="goBack()"></button>
+    </div>
+
+    <div class="page-header">
+      <div class="page-title">
+        <div>
+          <h1>System Users</h1>
+          <p>Manage user accounts and permissions</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="data-section">
+      <p-table 
+        [value]="users" 
+        [paginator]="true" 
+        [rows]="5" 
+        [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [loading]="loading"
+        styleClass="p-datatable-gridlines p-datatable-striped"
+        [rowHover]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} users"
+        [rowsPerPageOptions]="[5, 10, 20]">
+        
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 5rem"></th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Status</th>
+          </tr>
+        </ng-template>
+        
+        <ng-template pTemplate="body" let-user>
+          <tr>
+            <td>
+              <p-avatar 
+                [label]="getInitials(user.fullName)" 
+                [style]="{'background-color': getRandomColor(user.id)}" 
+                size="large" 
+                shape="circle">
+              </p-avatar>
+            </td>
+            <td>{{ user.fullName }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+              <p-tag 
+                value="Active" 
+                severity="success" 
+                [rounded]="true"
+                *ngIf="user.email === userEmail; else inactiveTag">
+              </p-tag>
+              <ng-template #inactiveTag>
+                <p-tag 
+                  value="Inactive" 
+                  severity="secondary" 
+                  [rounded]="true">
+                </p-tag>
+              </ng-template>
+            </td>
+          </tr>
+        </ng-template>
+        
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="4" class="text-center">No users found.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

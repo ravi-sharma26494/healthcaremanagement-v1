@@ -1,0 +1,178 @@
+/* Reuse the common layout styles from home component */
+.layout-wrapper {
+  min-height: 100vh;
+  background: #f5f7f9;
+  display: flex;
+  flex-direction: column;
+}
+
+.layout-topbar {
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.healthcare-icon {
+  color: #2196f3;
+  font-size: 1.8rem;
+  margin-right: 0.8rem;
+}
+
+.app-name {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #445a73;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #f1f5f9;
+  border-radius: 20px;
+}
+
+.user-profile i {
+  color: #2196f3;
+}
+
+.layout-main {
+  flex: 1;
+  padding: 2rem;
+}
+
+/* Page header styles */
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.page-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.page-title h1 {
+  color: #445a73;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  margin-top: 0;
+}
+
+.page-title p {
+  color: #64748b;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.back-button {
+  color: #2196f3;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  margin-right: 1rem;
+  min-width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* Back button container styles */
+.back-button-container {
+  margin-bottom: 1.5rem;
+}
+
+.back-button-container button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+}
+
+.back-button-container button .p-button-icon {
+  font-size: 1.2rem;
+}
+
+/* Data section styles */
+.data-section {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.04);
+  padding: 1.5rem;
+}
+
+/* PrimeNG Table customizations */
+:host ::ng-deep .p-datatable .p-datatable-header {
+  background: #ffffff;
+  border: none;
+  padding: 1rem;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+  background: #f8f9fa;
+  color: #445a73;
+  font-weight: 600;
+  padding: 1rem;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+  padding: 1rem;
+  border-width: 0 0 1px 0;
+}
+
+:host ::ng-deep .p-datatable .p-paginator {
+  background: #ffffff;
+  border: none;
+  padding: 1rem;
+}
+
+:host ::ng-deep .p-tag {
+  padding: 0.3rem 0.75rem;
+  font-size: 0.8rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .layout-topbar {
+    padding: 0 1rem;
+  }
+  
+  .app-name {
+    font-size: 1.2rem;
+  }
+  
+  .layout-main {
+    padding: 1rem;
+  }
+  
+  .user-profile span {
+    display: none;
+  }
+  
+  .data-section {
+    padding: 1rem;
+    overflow-x: auto;
+  }
+}

@@ -1,0 +1,82 @@
+<div class="layout-wrapper">
+  <!-- App Bar -->
+  <div class="layout-topbar">
+    <div class="topbar-left">
+      <i class="pi pi-heart-fill healthcare-icon"></i>
+      <span class="app-name">Healthcare Management</span>
+    </div>
+    <div class="topbar-right">
+      <div class="user-profile">
+        <i class="pi pi-user"></i>
+        <span>{{ userEmail }}</span>
+      </div>
+      <button pButton icon="pi pi-power-off" class="p-button-rounded p-button-danger" (click)="logout()"></button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="layout-main">
+    <!-- Back button as a separate prominent element -->
+    <div class="back-button-container">
+      <button pButton icon="pi pi-arrow-left" label="Back to Dashboard" 
+        class="p-button-raised p-button-primary" (click)="goBack()"></button>
+        <!-- <span>Go Back</span> -->
+    </div>
+
+    <div class="page-header">
+      <div class="page-title">
+        <div>
+          <h1>Claims Management</h1>
+          <p>View and manage healthcare claims</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="data-section">
+      <p-table 
+        [value]="claims" 
+        [paginator]="true" 
+        [rows]="5" 
+        [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [loading]="loading"
+        styleClass="p-datatable-gridlines p-datatable-striped"
+        [rowHover]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} claims"
+        [rowsPerPageOptions]="[5, 10, 20]">
+        
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Claim ID</th>
+            <th>Patient ID</th>
+            <th>Type</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Date</th>
+            <th>Provider</th>
+          </tr>
+        </ng-template>
+        
+        <ng-template pTemplate="body" let-claim>
+          <tr>
+            <td>{{ claim.ClaimID }}</td>
+            <td>{{ claim.BeneID }}</td>
+            <td>{{ claim.ClaimType }}</td>
+            <td>${{ claim.ClaimAmount.toLocaleString() }}</td>
+            <td>
+              <p-tag [value]="claim.ClaimStatus" [severity]="getSeverity(claim.ClaimStatus)"></p-tag>
+            </td>
+            <td>{{ claim.SubmissionDate | date:'mediumDate' }}</td>
+            <td>{{ claim.Provider }}</td>
+          </tr>
+        </ng-template>
+        
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="7" class="text-center">No claims found.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

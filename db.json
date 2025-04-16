@@ -1,0 +1,186 @@
+{
+  "users": [
+    {
+      "fullName": "Test Admin",
+      "email": "admin@healthcare.com",
+      "password": "admin123",
+      "id": 1
+    },
+    {
+      "id": "cd74",
+      "fullName": "testuser",
+      "email": "testuser@gmail.com",
+      "password": "12345"
+    }
+  ],
+  "patients": [
+    {
+      "id": 1,
+      "BeneID": "BENE11007",
+      "DOB": "1954-09-01",
+      "DOD": "2009-12-01",
+      "Gender": 1,
+      "Race": 2,
+      "RenalDiseaseIndicator": "0",
+      "State": 45,
+      "County": 610,
+      "NoOfMonths_PartACov": 12,
+      "NoOfMonths_PartBCov": 12,
+      "ChronicCond_Alzheimer": 1,
+      "ChronicCond_Heartfailure": 1,
+      "ChronicCond_KidneyDisease": 2,
+      "ChronicCond_Cancer": 2,
+      "ChronicCond_ObstrPulmonary": 2,
+      "ChronicCond_Depression": 2,
+      "ChronicCond_Diabetes": 1,
+      "ChronicCond_IschemicHeart": 2,
+      "ChronicCond_Osteoporasis": 1,
+      "ChronicCond_rheumatoidarthritis": 1,
+      "ChronicCond_stroke": 2,
+      "IPAnnualReimbursementAmt": 0,
+      "IPAnnualDeductibleAmt": 0,
+      "OPAnnualReimbursementAmt": 1490,
+      "OPAnnualDeductibleAmt": 160
+    },
+    {
+      "id": 2,
+      "BeneID": "BENE11008",
+      "DOB": "1962-07-15",
+      "DOD": "",
+      "Gender": 2,
+      "Race": 1,
+      "RenalDiseaseIndicator": "0",
+      "State": 36,
+      "County": 420,
+      "NoOfMonths_PartACov": 12,
+      "NoOfMonths_PartBCov": 12,
+      "ChronicCond_Alzheimer": 2,
+      "ChronicCond_Heartfailure": 2,
+      "ChronicCond_KidneyDisease": 1,
+      "ChronicCond_Cancer": 1,
+      "ChronicCond_ObstrPulmonary": 2,
+      "ChronicCond_Depression": 1,
+      "ChronicCond_Diabetes": 2,
+      "ChronicCond_IschemicHeart": 1,
+      "ChronicCond_Osteoporasis": 2,
+      "ChronicCond_rheumatoidarthritis": 2,
+      "ChronicCond_stroke": 1,
+      "IPAnnualReimbursementAmt": 2300,
+      "IPAnnualDeductibleAmt": 350,
+      "OPAnnualReimbursementAmt": 890,
+      "OPAnnualDeductibleAmt": 120
+    },
+    {
+      "id": 3,
+      "BeneID": "BENE11009",
+      "DOB": "1978-03-22",
+      "DOD": "",
+      "Gender": 1,
+      "Race": 3,
+      "RenalDiseaseIndicator": "1",
+      "State": 12,
+      "County": 330,
+      "NoOfMonths_PartACov": 10,
+      "NoOfMonths_PartBCov": 10,
+      "ChronicCond_Alzheimer": 2,
+      "ChronicCond_Heartfailure": 1,
+      "ChronicCond_KidneyDisease": 1,
+      "ChronicCond_Cancer": 2,
+      "ChronicCond_ObstrPulmonary": 1,
+      "ChronicCond_Depression": 1,
+      "ChronicCond_Diabetes": 1,
+      "ChronicCond_IschemicHeart": 1,
+      "ChronicCond_Osteoporasis": 2,
+      "ChronicCond_rheumatoidarthritis": 2,
+      "ChronicCond_stroke": 2,
+      "IPAnnualReimbursementAmt": 4200,
+      "IPAnnualDeductibleAmt": 500,
+      "OPAnnualReimbursementAmt": 2100,
+      "OPAnnualDeductibleAmt": 280
+    }
+  ],
+  "claims": [
+    {
+      "id": "CLM001",
+      "ClaimID": "CLM001",
+      "BeneID": "BENE11007",
+      "ClaimType": "Inpatient",
+      "ClaimAmount": 15000,
+      "ClaimStatus": "Approved",
+      "SubmissionDate": "2024-04-15",
+      "Provider": "Central Hospital"
+    },
+    {
+      "id": "CLM002",
+      "ClaimID": "CLM002",
+      "BeneID": "BENE11008",
+      "ClaimType": "Outpatient",
+      "ClaimAmount": 3500,
+      "ClaimStatus": "Pending",
+      "SubmissionDate": "2024-04-10",
+      "Provider": "City Medical Center"
+    },
+    {
+      "id": "CLM003",
+      "ClaimID": "CLM003",
+      "BeneID": "BENE11009",
+      "ClaimType": "Emergency",
+      "ClaimAmount": 8700,
+      "ClaimStatus": "Rejected",
+      "SubmissionDate": "2024-03-25",
+      "Provider": "Urgent Care Clinic"
+    },
+    {
+      "id": "CLM004",
+      "ClaimID": "CLM004",
+      "BeneID": "BENE11007",
+      "ClaimType": "Outpatient",
+      "ClaimAmount": 1200,
+      "ClaimStatus": "Approved",
+      "SubmissionDate": "2024-04-02",
+      "Provider": "Central Hospital"
+    },
+    {
+      "id": "CLM005",
+      "ClaimID": "CLM005",
+      "BeneID": "BENE11008",
+      "ClaimType": "Inpatient",
+      "ClaimAmount": 22500,
+      "ClaimStatus": "Approved",
+      "SubmissionDate": "2024-02-18",
+      "Provider": "Regional Medical Center"
+    }
+  ],
+  "fraud": [
+    {
+      "id": "FRD001",
+      "ClaimID": "CLM002",
+      "BeneID": "BENE11008",
+      "FraudType": "Duplicate Billing",
+      "DetectionDate": "2024-04-16",
+      "Status": "Under Investigation",
+      "Amount": 5000,
+      "Confidence": 0.89
+    },
+    {
+      "id": "FRD002",
+      "ClaimID": "CLM005",
+      "BeneID": "BENE11008",
+      "FraudType": "Upcoding",
+      "DetectionDate": "2024-04-12",
+      "Status": "Confirmed",
+      "Amount": 4500,
+      "Confidence": 0.95
+    },
+    {
+      "id": "FRD003",
+      "ClaimID": "CLM003",
+      "BeneID": "BENE11009",
+      "FraudType": "Phantom Billing",
+      "DetectionDate": "2024-04-05",
+      "Status": "Under Review",
+      "Amount": 8700,
+      "Confidence": 0.72
+    }
+  ]
+}
