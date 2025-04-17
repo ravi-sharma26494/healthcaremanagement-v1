@@ -590,43 +590,6 @@
                 }
               }
             ]
-          },
-          {
-            "name": "GET Protected Route",
-            "request": {
-              "method": "GET",
-              "header": [
-                {
-                  "key": "Authorization",
-                  "value": "Bearer <JWT_TOKEN>",
-                  "type": "text"
-                }
-              ],
-              "url": {
-                "raw": "http://localhost:5001/auth/protected",
-                "protocol": "http",
-                "host": ["localhost"],
-                "port": "5001",
-                "path": ["auth", "protected"]
-              }
-            },
-            "response": [],
-            "event": [
-              {
-                "listen": "test",
-                "script": {
-                  "exec": [
-                    "pm.test(\"Status code is 200\", function () {",
-                    "    pm.response.to.have.status(200);",
-                    "});",
-                    "pm.test(\"Response has protected message\", function () {",
-                    "    pm.expect(pm.response.json()).to.have.property(\"message\");",
-                    "});"
-                  ],
-                  "type": "text/javascript"
-                }
-              }
-            ]
           }
         ]
       }
