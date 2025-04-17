@@ -1,0 +1,634 @@
+{
+    "info": {
+      "_postman_id": "your-collection-id",
+      "name": "Healthcare API",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Patients",
+        "item": [
+          {
+            "name": "GET All Patients",
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "http://localhost:5001/patients/",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5001",
+                "path": ["patients", ""]
+              }
+            },
+            "response": [],
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "exec": [
+                    "pm.test(\"Status code is 200\", function () {",
+                    "    pm.response.to.have.status(200);",
+                    "});",
+                    "pm.test(\"Response is an array\", function () {",
+                    "    pm.expect(pm.response.json()).to.be.an(\"array\");",
+                    "});"
+                  ],
+                  "type": "text/javascript"
+                }
+              }
+            ]
+          },
+          {
+            "name": "GET Patient by ID",
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "http://localhost:5001/patients/<bene_id>",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5001",
+                "path": ["patients", "<bene_id>"]
+              }
+            },
+            "response": [],
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "exec": [
+                    "pm.test(\"Status code is 200\", function () {",
+                    "    pm.response.to.have.status(200);",
+                    "});",
+                    "pm.test(\"Response has patient data\", function () {",
+                    "    pm.expect(pm.response.json()).to.have.property(\"BeneID\");",
+                    "});"
+                  ],
+                  "type": "text/javascript"
+                }
+              }
+            ]
+          },
+          {
+            "name": "POST Add Patient",
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"BeneID\": \"12345\",\n    \"Name\": \"John Doe\",\n    \"Age\": 30,\n    \"Gender\": \"Male\"\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "http://localhost:5001/patients/",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5001",
+                "path": ["patients", ""]
+              }
+            },
+            "response": [],
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "exec": [
+                    "pm.test(\"Status code is 201\", function () {",
+                    "    pm.response.to.have.status(201);",
+                    "});",
+                    "pm.test(\"Response has success message\", function () {",
+                    "    pm.expect(pm.response.json()).to.have.property(\"message\");",
+                    "});"
+                  ],
+                  "type": "text/javascript"
+                }
+              }
+            ]
+          },
+          {
+            "name": "PUT Update Patient",
+            "request": {
+              "method": "PUT",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"Age\": 35\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "http://localhost:5001/patients/<bene_id>",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5001",
+                "path": ["patients", "<bene_id>"]
+              }
+            },
+            "response": [],
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "exec": [
+                    "pm.test(\"Status code is 200\", function () {",
+                    "    pm.response.to.have.status(200);",
+                    "});",
+                    "pm.test(\"Response has success message\", function () {",
+                    "    pm.expect(pm.response.json()).to.have.property(\"message\");",
+                    "});"
+                  ],
+                  "type": "text/javascript"
+                }
+              }
+            ]
+          },
+          {
+            "name": "DELETE Patient",
+            "request": {
+              "method": "DELETE",
+              "header": [],
+              "url": {
+                "raw": "http://localhost:5001/patients/<bene_id>",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5001",
+                "path": ["patients", "<bene_id>"]
+              }
+            },
+            "response": [],
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "exec": [
+                    "pm.test(\"Status code is 200\", function () {",
+                    "    pm.response.to.have.status(200);",
+                    "});",
+                    "pm.test(\"Response has success message\", function () {",
+                    "    pm.expect(pm.response.json()).to.have.property(\"message\");",
+                    "});"
+                  ],
+                  "type": "text/javascript"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Claims",
+        "item": [
+          {
+            "name": "GET All Claims",
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "http://localhost:5001/claims/",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5001",
+                "path": ["claims", ""]
+              }
+            },
+            "response": [],
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "exec": [
+                    "pm.test(\"Status code is 200\", function () {",
+                    "    pm.response.to.have.status(200);",
+                    "});",
+                    "pm.test(\"Response is an array\", function () {",
+                    "    pm.expect(pm.response.json()).to.be.an(\"array\");",
+                    "});"
+                  ],
+                  "type": "text/javascript"
+                }
+              }
+            ]
+          },
+          {
+            "name": "GET Claims by Patient ID",
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "http://localhost:5001/claims/patient/<bene_id>",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5001",
+                "path": ["claims", "patient", "<bene_id>"]
+              }
+            },
+            "response": [],
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "exec": [
+                    "pm.test(\"Status code is 200\", function () {",
+                    "    pm.response.to.have.status(200);",
+                    "});",
+                    "pm.test(\"Response is an array\", function () {",
+                    "    pm.expect(pm.response.json()).to.be.an(\"array\");",
+                    "});"
+                  ],
+                  "type": "text/javascript"
+                }
+              }
+            ]
+          },
+          {
+            "name": "POST Add Claim",
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"ClaimID\": \"67890\",\n    \"BeneID\": \"12345\",\n    \"Amount\": 1000,\n    \"Status\": \"Pending\"\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "http://localhost:5001/claims/",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5001",
+                "path": ["claims", ""]
+              }
+            },
+            "response": [],
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "exec": [
+                    "pm.test(\"Status code is 201\", function () {",
+                    "    pm.response.to.have.status(201);",
+                    "});",
+                    "pm.test(\"Response has success message\", function () {",
+                    "    pm.expect(pm.response.json()).to.have.property(\"message\");",
+                    "});"
+                  ],
+                  "type": "text/javascript"
+                }
+              }
+            ]
+          },
+          {
+            "name": "PUT Update Claim",
+            "request": {
+              "method": "PUT",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"Status\": \"Approved\"\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "http://localhost:5001/claims/<claim_id>",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5001",
+                "path": ["claims", "<claim_id>"]
+              }
+            },
+            "response": [],
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "exec": [
+                    "pm.test(\"Status code is 200\", function () {",
+                    "    pm.response.to.have.status(200);",
+                    "});",
+                    "pm.test(\"Response has success message\", function () {",
+                    "    pm.expect(pm.response.json()).to.have.property(\"message\");",
+                    "});"
+                  ],
+                  "type": "text/javascript"
+                }
+              }
+            ]
+          },
+          {
+            "name": "DELETE Claim",
+            "request": {
+              "method": "DELETE",
+              "header": [],
+              "url": {
+                "raw": "http://localhost:5001/claims/<claim_id>",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5001",
+                "path": ["claims", "<claim_id>"]
+              }
+            },
+            "response": [],
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "exec": [
+                    "pm.test(\"Status code is 200\", function () {",
+                    "    pm.response.to.have.status(200);",
+                    "});",
+                    "pm.test(\"Response has success message\", function () {",
+                    "    pm.expect(pm.response.json()).to.have.property(\"message\");",
+                    "});"
+                  ],
+                  "type": "text/javascript"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Fraud",
+        "item": [
+          {
+            "name": "GET All Fraud Cases",
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "http://localhost:5001/fraud/",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5001",
+                "path": ["fraud", ""]
+              }
+            },
+            "response": [],
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "exec": [
+                    "pm.test(\"Status code is 200\", function () {",
+                    "    pm.response.to.have.status(200);",
+                    "});",
+                    "pm.test(\"Response is an array\", function () {",
+                    "    pm.expect(pm.response.json()).to.be.an(\"array\");",
+                    "});"
+                  ],
+                  "type": "text/javascript"
+                }
+              }
+            ]
+          },
+          {
+            "name": "POST Add Fraud Case",
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"FraudID\": \"54321\",\n    \"BeneID\": \"12345\",\n    \"Description\": \"Suspicious activity detected\"\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "http://localhost:5001/fraud/",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5001",
+                "path": ["fraud", ""]
+              }
+            },
+            "response": [],
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "exec": [
+                    "pm.test(\"Status code is 201\", function () {",
+                    "    pm.response.to.have.status(201);",
+                    "});",
+                    "pm.test(\"Response has success message\", function () {",
+                    "    pm.expect(pm.response.json()).to.have.property(\"message\");",
+                    "});"
+                  ],
+                  "type": "text/javascript"
+                }
+              }
+            ]
+          },
+          {
+            "name": "PUT Update Fraud Case",
+            "request": {
+              "method": "PUT",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"Description\": \"Confirmed fraud\"\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "http://localhost:5001/fraud/<fraud_id>",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5001",
+                "path": ["fraud", "<fraud_id>"]
+              }
+            },
+            "response": [],
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "exec": [
+                    "pm.test(\"Status code is 200\", function () {",
+                    "    pm.response.to.have.status(200);",
+                    "});",
+                    "pm.test(\"Response has success message\", function () {",
+                    "    pm.expect(pm.response.json()).to.have.property(\"message\");",
+                    "});"
+                  ],
+                  "type": "text/javascript"
+                }
+              }
+            ]
+          },
+          {
+            "name": "DELETE Fraud Case",
+            "request": {
+              "method": "DELETE",
+              "header": [],
+              "url": {
+                "raw": "http://localhost:5001/fraud/<fraud_id>",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5001",
+                "path": ["fraud", "<fraud_id>"]
+              }
+            },
+            "response": [],
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "exec": [
+                    "pm.test(\"Status code is 200\", function () {",
+                    "    pm.response.to.have.status(200);",
+                    "});",
+                    "pm.test(\"Response has success message\", function () {",
+                    "    pm.expect(pm.response.json()).to.have.property(\"message\");",
+                    "});"
+                  ],
+                  "type": "text/javascript"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Auth",
+        "item": [
+          {
+            "name": "POST Register User",
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"email\": \"user@example.com\",\n    \"password\": \"password123\"\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "http://localhost:5001/auth/register",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5001",
+                "path": ["auth", "register"]
+              }
+            },
+            "response": [],
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "exec": [
+                    "pm.test(\"Status code is 201\", function () {",
+                    "    pm.response.to.have.status(201);",
+                    "});",
+                    "pm.test(\"Response has success message\", function () {",
+                    "    pm.expect(pm.response.json()).to.have.property(\"message\");",
+                    "});"
+                  ],
+                  "type": "text/javascript"
+                }
+              }
+            ]
+          },
+          {
+            "name": "POST Login User",
+            "request": {
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"email\": \"user@example.com\",\n    \"password\": \"password123\"\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "http://localhost:5001/auth/login",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5001",
+                "path": ["auth", "login"]
+              }
+            },
+            "response": [],
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "exec": [
+                    "pm.test(\"Status code is 200\", function () {",
+                    "    pm.response.to.have.status(200);",
+                    "});",
+                    "pm.test(\"Response has token\", function () {",
+                    "    pm.expect(pm.response.json()).to.have.property(\"token\");",
+                    "});"
+                  ],
+                  "type": "text/javascript"
+                }
+              }
+            ]
+          },
+          {
+            "name": "GET Protected Route",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer <JWT_TOKEN>",
+                  "type": "text"
+                }
+              ],
+              "url": {
+                "raw": "http://localhost:5001/auth/protected",
+                "protocol": "http",
+                "host": ["localhost"],
+                "port": "5001",
+                "path": ["auth", "protected"]
+              }
+            },
+            "response": [],
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "exec": [
+                    "pm.test(\"Status code is 200\", function () {",
+                    "    pm.response.to.have.status(200);",
+                    "});",
+                    "pm.test(\"Response has protected message\", function () {",
+                    "    pm.expect(pm.response.json()).to.have.property(\"message\");",
+                    "});"
+                  ],
+                  "type": "text/javascript"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
