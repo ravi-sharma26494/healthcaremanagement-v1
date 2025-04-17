@@ -68,28 +68,37 @@ export class RegisterComponent implements OnInit {
     delete postData.confirmPassword;
     
     this.authService.registerUser(postData as RegisterPostData).subscribe({
-      next: () => {
+      next: (response) => {
         this.loading = false;
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: 'Registered successfully',
-        });
-        // No need to navigate to login page - user is auto-logged in
-        this.router.navigate(['home']);
+        if (response.token) {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Registration Successful',
+            detail: 'Your account has been created',
+          });
+          // User is auto-logged in by the auth service
+          this.router.navigate(['home']);
+        } else {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Registration Failed',
+            detail: response.message || 'Unable to create account',
+          });
+        }
       },
       error: (err) => {
         this.loading = false;
-        console.error(err);
+        console.error('Registration error:', err);
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: 'Something went wrong during registration',
+          detail: err.message || 'Something went wrong during registration',
         });
       },
     });
   }
 
+  // Form controls getters for template access
   get fullName() {
     return this.registerForm.controls['fullName'];
   }

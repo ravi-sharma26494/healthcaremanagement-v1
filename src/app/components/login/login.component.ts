@@ -35,12 +35,27 @@ export class LoginComponent {
   
   onLogin() {
     const { email, password } = this.login;
+    
+    if (!email || !password) {
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Missing Information',
+        detail: 'Please provide both email and password',
+      });
+      return;
+    }
+    
     this.loading = true;
     
     this.authService.login(email, password).subscribe({
       next: (success) => {
         this.loading = false;
         if (success) {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Login Successful',
+            detail: 'Welcome back!',
+          });
           this.router.navigate(['home']);
         } else {
           this.messageService.add({
@@ -55,8 +70,8 @@ export class LoginComponent {
         console.error('Login error:', error);
         this.messageService.add({
           severity: 'error',
-          summary: 'Error',
-          detail: 'Something went wrong during login',
+          summary: 'Authentication Error',
+          detail: error.message || 'Something went wrong during login',
         });
       }
     });
